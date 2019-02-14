@@ -35,16 +35,19 @@ void lcs()
                                                 if(x[i-1]==y[j-1])
                                                 {
                                                                 c[i][j]=c[i-1][j-1]+1;
+
                                                                 b[i][j]='c';
                                                 }
                                                 else if(c[i-1][j]>=c[i][j-1])
                                                 {
                                                                 c[i][j]=c[i-1][j];
+
                                                                 b[i][j]='u';
                                                 }
                                                 else
                                                 {
                                                                 c[i][j]=c[i][j-1];
+
                                                                 b[i][j]='l';
                                                 }
                                 }
@@ -59,5 +62,6 @@ int main()
                 printf("\nThe Longest Common Subsequence is ");
                 lcs();
                 print(m,n);
+
 		return 0;
 }
