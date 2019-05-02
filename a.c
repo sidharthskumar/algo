@@ -1,39 +1,34 @@
-#include<stdio.h>
+ #include<stdio.h>
+#include<sys/wait.h>
+#include<unistd.h>
 #include<stdlib.h>
-struct node {
-int data;
-struct node *next;
-};
 
-
-typedef struct node* n;
-
-int main()
-{int a,b;
-n p,head,temp;
-
-p=(n)malloc(sizeof(struct node));
-
-printf("enter total nodes \nenter the first number");
-scanf("%d",&a);
-scanf("%d",&p->data);
-head=p;
-printf("%d",p->data);
-p->next=NULL;
-
-while(a--){
-printf("enter the data of %d",a);
-temp=(n)malloc(sizeof(struct node));
-p->next=temp;
-scanf("%d",&temp->data);
-p=temp;
-temp->next=NULL;}
-p=head;
-while(p->next!=NULL){printf("%d",p->data); p=p->next;}
-
-
-
-
-
-return 0;
+int call(int j,int n) {
+  int k;
+  if (n==0) {
+    return 0;
+  }
+  k=fork();
+  if (k==-1) {
+    exit(0);
+  }
+  if (k==0) {
+    printf("I am level %d | pid:%d | ppid:%d.\n",j-n,getpid(),getppid());
+    call(j,n-1);
+    exit(0);
+  }
+  else{
+    wait(NULL);
+  }
+  return 0;
 }
+
+
+void main() {
+ int n;
+ printf("Enter level : ");
+ scanf("%d",&n);
+ printf("I am level 0 | pid:%d.\n",getpid());
+ call(n,n-1);
+}
+
