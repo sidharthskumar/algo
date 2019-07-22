@@ -1,10 +1,13 @@
 def maxnonadj(n):
-    i=n[0]
-    e=0
+    inc=n[0]  #inclu
+    exl=0		#exclu
     for i in range(1,len(n)):
-        i=max(e+n[i],i)
-        e=i
-    print(max(e,i))
+        new_exclusive=max(inc,exl)
+        inc=exl+n[i]
+        exl=new_exclusive
     print(n)
+    print(max(inc,exl))
 
-maxnonadj([4,1,1,4,2,1])
+
+
+maxnonadj([5, 5, 10, 100, 10, 5])
